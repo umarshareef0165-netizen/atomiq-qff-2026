@@ -1,0 +1,104 @@
+{
+  "seed": 42,
+  "shots_stage3": 16384,
+  "shots_qaoa": 4096,
+  "stage1": {
+    "cv_metrics_oof_train_only": {
+      "logistic_regression": {
+        "roc_auc": 0.6286,
+        "pr_auc": 0.2001,
+        "brier": 0.2025,
+        "log_loss": 0.5955
+      },
+      "random_forest": {
+        "roc_auc": 0.6467,
+        "pr_auc": 0.2331,
+        "brier": 0.1011,
+        "log_loss": 0.3555
+      },
+      "grad_boosting": {
+        "roc_auc": 0.5663,
+        "pr_auc": 0.1924,
+        "brier": 0.114,
+        "log_loss": 0.524
+      },
+      "quantum_kernel_svc": {
+        "roc_auc": 0.4905,
+        "pr_auc": 0.1204,
+        "brier": 0.1034,
+        "log_loss": 0.3622
+      },
+      "hybrid_avg_logreg_qkernel": {
+        "roc_auc": 0.6293,
+        "pr_auc": 0.1972,
+        "brier": 0.1228,
+        "log_loss": 0.4093
+      },
+      "hybrid_avg_rf_qkernel": {
+        "roc_auc": 0.6437,
+        "pr_auc": 0.2221,
+        "brier": 0.1003,
+        "log_loss": 0.3474
+      }
+    },
+    "quantum_features": [
+      "pdays",
+      "campaign",
+      "balance",
+      "day"
+    ],
+    "final_model": "random_forest",
+    "final_model_rule": "best out-of-fold PR-AUC among logreg / random forest / grad boosting / quantum-kernel SVC / two hybrids; Brier tie-break",
+    "top10_ids": [
+      "C0031",
+      "C0079",
+      "C0081",
+      "C0256",
+      "C0338",
+      "C0183",
+      "C0170",
+      "C0378",
+      "C0327",
+      "C0188"
+    ],
+    "test_probability_range": [
+      0.0033,
+      0.42
+    ]
+  },
+  "stage2": {
+    "selected_ids": [
+      "C0031",
+      "C0079",
+      "C0256",
+      "C0338",
+      "C0170",
+      "C0327"
+    ],
+    "objective_qaoa": 33.2167,
+    "objective_brute_force": 33.2167,
+    "optimality_gap": 0.0,
+    "total_cost": 10.0,
+    "total_capacity": 15.0
+  },
+  "stage3": {
+    "quantum_estimate_P_ge3": 0.357422,
+    "exact_analytical_P_ge3": 0.360265,
+    "monte_carlo_P_ge3_200k": 0.3595,
+    "error_quantum_minus_exact": -0.002843,
+    "noisy_estimate_P_ge3": 0.378723,
+    "transpiled_circuit_depth": 2,
+    "transpiled_gate_counts": {
+      "ry": 6,
+      "measure": 6
+    },
+    "selected_ids": [
+      "C0031",
+      "C0079",
+      "C0256",
+      "C0338",
+      "C0170",
+      "C0327"
+    ]
+  }
+}

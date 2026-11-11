@@ -1,0 +1,65 @@
+{
+  "selected_customer_ids": [
+    "C0031",
+    "C0079",
+    "C0256",
+    "C0338",
+    "C0170",
+    "C0327"
+  ],
+  "qubit_order": [
+    "qubit 0 = C0031",
+    "qubit 1 = C0079",
+    "qubit 2 = C0256",
+    "qubit 3 = C0338",
+    "qubit 4 = C0170",
+    "qubit 5 = C0327"
+  ],
+  "bit_ordering_note": "Qiskit little-endian: the rightmost character of a measured bitstring is qubit 0. Success counts bitstrings with >=3 ones, which is order-independent; the stated qubit order is used for the RY angles and the statevector check.",
+  "input_probabilities": [
+    0.42,
+    0.413333,
+    0.35,
+    0.343333,
+    0.32,
+    0.276667
+  ],
+  "ry_angles_rad": [
+    1.410106,
+    1.396582,
+    1.266104,
+    1.252095,
+    1.202528,
+    1.107761
+  ],
+  "backend": "AerSimulator (noiseless + noisy runs)",
+  "shots": 16384,
+  "measurement_counts_top10": {
+    "000000": 1137,
+    "000001": 857,
+    "000010": 846,
+    "001000": 610,
+    "000011": 595,
+    "000100": 594,
+    "010000": 578,
+    "000101": 473,
+    "001001": 465,
+    "100000": 441
+  },
+  "quantum_estimate_P_ge3": 0.357422,
+  "exact_analytical_P_ge3": 0.360265,
+  "monte_carlo_P_ge3_200k": 0.3595,
+  "error_quantum_minus_exact": -0.002843,
+  "error_monte_carlo_minus_exact": -0.000765,
+  "noisy_estimate_P_ge3": 0.378723,
+  "error_noisy_minus_exact": 0.018458,
+  "logical_qubits": 6,
+  "physical_qubits": 6,
+  "original_circuit_depth": 2,
+  "transpiled_circuit_depth": 2,
+  "transpiled_gate_counts": {
+    "ry": 6,
+    "measure": 6
+  },
+  "swap_count": 0
+}

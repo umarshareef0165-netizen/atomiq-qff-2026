@@ -1,0 +1,448 @@
+{
+  "top10_candidates": [
+    {
+      "customer_id": "C0031",
+      "predicted_probability": 0.42,
+      "expected_deposit_value": 13,
+      "contact_cost": 2,
+      "capacity_units": 1,
+      "expected_net_value": 3.46
+    },
+    {
+      "customer_id": "C0079",
+      "predicted_probability": 0.413333,
+      "expected_deposit_value": 24,
+      "contact_cost": 3,
+      "capacity_units": 3,
+      "expected_net_value": 6.92
+    },
+    {
+      "customer_id": "C0081",
+      "predicted_probability": 0.373333,
+      "expected_deposit_value": 17,
+      "contact_cost": 4,
+      "capacity_units": 1,
+      "expected_net_value": 2.3467
+    },
+    {
+      "customer_id": "C0256",
+      "predicted_probability": 0.35,
+      "expected_deposit_value": 22,
+      "contact_cost": 1,
+      "capacity_units": 4,
+      "expected_net_value": 6.7
+    },
+    {
+      "customer_id": "C0338",
+      "predicted_probability": 0.343333,
+      "expected_deposit_value": 18,
+      "contact_cost": 2,
+      "capacity_units": 2,
+      "expected_net_value": 4.18
+    },
+    {
+      "customer_id": "C0183",
+      "predicted_probability": 0.33,
+      "expected_deposit_value": 14,
+      "contact_cost": 2,
+      "capacity_units": 3,
+      "expected_net_value": 2.62
+    },
+    {
+      "customer_id": "C0170",
+      "predicted_probability": 0.32,
+      "expected_deposit_value": 22,
+      "contact_cost": 1,
+      "capacity_units": 1,
+      "expected_net_value": 6.04
+    },
+    {
+      "customer_id": "C0378",
+      "predicted_probability": 0.283333,
+      "expected_deposit_value": 14,
+      "contact_cost": 3,
+      "capacity_units": 1,
+      "expected_net_value": 0.9667
+    },
+    {
+      "customer_id": "C0327",
+      "predicted_probability": 0.276667,
+      "expected_deposit_value": 25,
+      "contact_cost": 1,
+      "capacity_units": 4,
+      "expected_net_value": 5.9167
+    },
+    {
+      "customer_id": "C0188",
+      "predicted_probability": 0.26,
+      "expected_deposit_value": 13,
+      "contact_cost": 2,
+      "capacity_units": 2,
+      "expected_net_value": 1.38
+    }
+  ],
+  "selected_customer_ids": [
+    "C0031",
+    "C0079",
+    "C0256",
+    "C0338",
+    "C0170",
+    "C0327"
+  ],
+  "total_contact_cost": 10.0,
+  "total_capacity_units": 15.0,
+  "budget_limit": 25,
+  "capacity_limit": 22,
+  "exactly_k": 6,
+  "objective_value_qaoa": 33.2167,
+  "objective_value_brute_force_optimum": 33.2167,
+  "optimality_gap": 0.0,
+  "brute_force_optimum_ids": [
+    "C0031",
+    "C0079",
+    "C0256",
+    "C0338",
+    "C0170",
+    "C0327"
+  ],
+  "qaoa_runs": [
+    {
+      "qaoa_reps": 2,
+      "optimizer": "scipy COBYLA(maxiter=200, 2 fixed inits), exact statevector expectation",
+      "optimal_theta_gamma_then_beta": [
+        1.535419,
+        1.341407,
+        0.226648,
+        0.206762
+      ],
+      "optimal_expectation_qubo_energy": -13.232,
+      "probability_of_brute_force_optimum": 0.0026,
+      "most_probable_bitstring_x": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "most_probable_selected": [
+        "C0031",
+        "C0079",
+        "C0256",
+        "C0338",
+        "C0170",
+        "C0327"
+      ],
+      "most_probable_objective": 33.2167,
+      "most_probable_cost": 10.0,
+      "most_probable_capacity": 15.0,
+      "most_probable_feasible": true,
+      "top_sampled_bitstrings": [
+        {
+          "bitstring": "0101010111",
+          "count": 19,
+          "selected": [
+            "C0031",
+            "C0079",
+            "C0081",
+            "C0338",
+            "C0170",
+            "C0327"
+          ],
+          "objective": 28.8633,
+          "cost": 13.0,
+          "capacity": 12.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1010001111",
+          "count": 19,
+          "selected": [
+            "C0031",
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 21.7733,
+          "cost": 15.0,
+          "capacity": 12.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1000011111",
+          "count": 19,
+          "selected": [
+            "C0031",
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0338",
+            "C0188"
+          ],
+          "objective": 24.9866,
+          "cost": 14.0,
+          "capacity": 13.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "0010111011",
+          "count": 18,
+          "selected": [
+            "C0031",
+            "C0079",
+            "C0256",
+            "C0338",
+            "C0183",
+            "C0378"
+          ],
+          "objective": 24.8466,
+          "cost": 13.0,
+          "capacity": 14.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1101100101",
+          "count": 17,
+          "selected": [
+            "C0031",
+            "C0081",
+            "C0183",
+            "C0170",
+            "C0327",
+            "C0188"
+          ],
+          "objective": 21.7633,
+          "cost": 12.0,
+          "capacity": 12.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1011100110",
+          "count": 16,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0183",
+            "C0170",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 20.2733,
+          "cost": 15.0,
+          "capacity": 11.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1011101010",
+          "count": 16,
+          "selected": [
+            "C0079",
+            "C0256",
+            "C0183",
+            "C0170",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 24.6267,
+          "cost": 12.0,
+          "capacity": 14.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "0110101110",
+          "count": 16,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0183",
+            "C0378",
+            "C0327"
+          ],
+          "objective": 25.47,
+          "cost": 14.0,
+          "capacity": 16.0,
+          "feasible": true
+        }
+      ]
+    },
+    {
+      "qaoa_reps": 3,
+      "optimizer": "scipy COBYLA(maxiter=200, 2 fixed inits), exact statevector expectation",
+      "optimal_theta_gamma_then_beta": [
+        0.758376,
+        0.229702,
+        0.179888,
+        1.050883,
+        1.020065,
+        1.016624
+      ],
+      "optimal_expectation_qubo_energy": -14.7886,
+      "probability_of_brute_force_optimum": 0.0,
+      "most_probable_bitstring_x": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "most_probable_selected": [
+        "C0079",
+        "C0081",
+        "C0256",
+        "C0183",
+        "C0378",
+        "C0188"
+      ],
+      "most_probable_objective": 20.9333,
+      "most_probable_cost": 15.0,
+      "most_probable_capacity": 14.0,
+      "most_probable_feasible": true,
+      "top_sampled_bitstrings": [
+        {
+          "bitstring": "1010101110",
+          "count": 496,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0183",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 20.9333,
+          "cost": 15.0,
+          "capacity": 14.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1011101110",
+          "count": 399,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0183",
+            "C0170",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 26.9733,
+          "cost": 16.0,
+          "capacity": 15.0,
+          "feasible": false
+        },
+        {
+          "bitstring": "1110101110",
+          "count": 312,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0183",
+            "C0378",
+            "C0327",
+            "C0188"
+          ],
+          "objective": 26.85,
+          "cost": 16.0,
+          "capacity": 18.0,
+          "feasible": false
+        },
+        {
+          "bitstring": "1111001110",
+          "count": 250,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0170",
+            "C0378",
+            "C0327",
+            "C0188"
+          ],
+          "objective": 30.27,
+          "cost": 15.0,
+          "capacity": 16.0,
+          "feasible": false
+        },
+        {
+          "bitstring": "1011001110",
+          "count": 209,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0170",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 24.3533,
+          "cost": 14.0,
+          "capacity": 12.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1110001110",
+          "count": 184,
+          "selected": [
+            "C0079",
+            "C0081",
+            "C0256",
+            "C0378",
+            "C0327",
+            "C0188"
+          ],
+          "objective": 24.23,
+          "cost": 14.0,
+          "capacity": 15.0,
+          "feasible": true
+        },
+        {
+          "bitstring": "1111101010",
+          "count": 98,
+          "selected": [
+            "C0079",
+            "C0256",
+            "C0183",
+            "C0170",
+            "C0378",
+            "C0327",
+            "C0188"
+          ],
+          "objective": 30.5433,
+          "cost": 13.0,
+          "capacity": 18.0,
+          "feasible": false
+        },
+        {
+          "bitstring": "1011101010",
+          "count": 91,
+          "selected": [
+            "C0079",
+            "C0256",
+            "C0183",
+            "C0170",
+            "C0378",
+            "C0188"
+          ],
+          "objective": 24.6267,
+          "cost": 12.0,
+          "capacity": 14.0,
+          "feasible": true
+        }
+      ]
+    }
+  ]
+}

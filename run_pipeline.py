@@ -55,9 +55,15 @@ summary = {"seed": SEED, "shots_stage3": SHOTS_STAGE3, "shots_qaoa": SHOTS_QAOA}
 
 
 def cv_metrics(y_true, oof_proba):
+    # Precision@10 / Recall@10: the top 10 ranked by out-of-fold probability.
+    # (Test labels are withheld, so these are train-OOF metrics, like PR-AUC.)
+    _order = np.argsort(oof_proba)[::-1][:10]
+    _top10_y = np.asarray(y_true)[_order]
     return {
         "roc_auc": round(float(roc_auc_score(y_true, oof_proba)), 4),
         "pr_auc": round(float(average_precision_score(y_true, oof_proba)), 4),
+        "precision_at_10": round(float(_top10_y.mean()), 4),
+        "recall_at_10": round(float(_top10_y.sum() / np.asarray(y_true).sum()), 4),
         "brier": round(float(brier_score_loss(y_true, oof_proba)), 4),
         "log_loss": round(float(log_loss(y_true, oof_proba)), 4),
     }
@@ -500,6 +506,28 @@ for p in probs:
 exact = float(sum(dp[3:]))
 mc = float((rng.binomial(1, probs, size=(200_000, 6)).sum(axis=1) >= 3).mean())
 
+# Error propagation: how Stage 1 probability error flows into P(>=3).
+# A +/-0.02 shift in every selected probability (a plausible calibration
+# error at this Brier score) moves the exact P(>=3); the most sensitive
+# single customer is also reported. This is the cross-stage error budget.
+def _pb_ge3(ps):
+    _dp = [1.0]
+    for _p in ps:
+        _ndp = [0.0] * (len(_dp) + 1)
+        for _k, _v in enumerate(_dp):
+            _ndp[_k] += _v * (1 - _p)
+            _ndp[_k + 1] += _v * _p
+        _dp = _ndp
+    return float(sum(_dp[3:]))
+
+_sens_all_plus = _pb_ge3(np.clip(probs + 0.02, 0, 1))
+_sens_all_minus = _pb_ge3(np.clip(probs - 0.02, 0, 1))
+_sens_single = max(
+    abs(_pb_ge3(np.clip(probs + np.eye(6)[i] * 0.02, 0, 1)) - exact)
+    for i in range(6))
+print(f"  sensitivity: P(>=3) {exact:.4f} -> [{_sens_all_minus:.4f}, {_sens_all_plus:.4f}] "
+      f"for +/-0.02 on all p; max single-customer shift {_sens_single:.4f}")
+
 # Noisy Aer run (same depolarising model as the starter noise demo).
 noise = NoiseModel()
 noise.add_all_qubit_quantum_error(depolarizing_error(0.01, 1), ["ry"])
@@ -529,6 +557,9 @@ s3 = {
     "error_monte_carlo_minus_exact": round(float(mc - exact), 6),
     "noisy_estimate_P_ge3": round(float(noisy_est), 6),
     "error_noisy_minus_exact": round(float(noisy_est - exact), 6),
+    "sensitivity_P_ge3_all_plus_0.02": round(_sens_all_plus, 6),
+    "sensitivity_P_ge3_all_minus_0.02": round(_sens_all_minus, 6),
+    "sensitivity_P_ge3_max_single_0.02": round(_sens_single, 6),
     "logical_qubits": 6, "physical_qubits": 6,
     "original_circuit_depth": int(qc.depth()),
     "transpiled_circuit_depth": int(tqc.depth()),
@@ -549,7 +580,10 @@ summary["stage3"] = {k: s3[k] for k in
                      ["quantum_estimate_P_ge3", "exact_analytical_P_ge3",
                       "monte_carlo_P_ge3_200k", "error_quantum_minus_exact",
                       "noisy_estimate_P_ge3", "transpiled_circuit_depth",
-                      "transpiled_gate_counts"]}
+                      "transpiled_gate_counts",
+                      "sensitivity_P_ge3_all_plus_0.02",
+                      "sensitivity_P_ge3_all_minus_0.02",
+                      "sensitivity_P_ge3_max_single_0.02"]}
 summary["stage3"]["selected_ids"] = selected_ids
 with open(ROOT / "results_summary.json", "w") as f:
     json.dump(summary, f, indent=2)

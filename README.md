@@ -40,14 +40,16 @@ Full statement: `resources/PROBLEM_STATEMENT_THE_ATOMIQ_HACKTHON.pdf`.
 **Models, validated by 5-fold stratified CV on train only** (out-of-fold predictions;
 test never used for selection or tuning):
 
-| Model | ROC-AUC | PR-AUC | Brier | Log loss |
-|---|---|---|---|---|
-| Logistic regression | 0.6286 | 0.2001 | 0.2025 | 0.5955 |
-| **Random forest (submitted)** | **0.6467** | **0.2331** | **0.1011** | **0.3555** |
-| Gradient boosting | 0.5663 | 0.1924 | 0.1140 | 0.5240 |
-| Quantum kernel SVC | 0.4905 | 0.1204 | 0.1034 | 0.3622 |
-| Hybrid (logreg + Q-kernel) | 0.6293 | 0.1972 | 0.1228 | 0.4093 |
-| Hybrid (RF + Q-kernel) | 0.6437 | 0.2221 | 0.1003 | 0.3474 |
+| Model | ROC-AUC | PR-AUC | P@10 | R@10 | Brier | Log loss |
+|---|---|---|---|---|---|---|
+| Logistic regression | 0.6286 | 0.2001 | 0.30 | 0.0857 | 0.2025 | 0.5955 |
+| **Random forest (submitted)** | **0.6467** | **0.2331** | **0.30** | **0.0857** | **0.1011** | **0.3555** |
+| Gradient boosting | 0.5663 | 0.1924 | 0.40 | 0.1143 | 0.1140 | 0.5240 |
+| Quantum kernel SVC | 0.4905 | 0.1204 | 0.10 | 0.0286 | 0.1034 | 0.3622 |
+| Hybrid (logreg + Q-kernel) | 0.6293 | 0.1972 | 0.30 | 0.0857 | 0.1228 | 0.4093 |
+| Hybrid (RF + Q-kernel) | 0.6437 | 0.2221 | 0.20 | 0.0571 | 0.1003 | 0.3474 |
+
+Precision@10 / Recall@10 are train out-of-fold (test labels are withheld).
 
 **Quantum classifier:** 4-qubit ZZ feature map (reps 2, linear entanglement) on
 pdays, campaign, balance, day — chosen by train-only mutual information — with a
@@ -144,6 +146,12 @@ Errors: quantum − exact = **−0.0028** (within the ±0.0038 shot-noise scale 
 Transpiled circuit: depth 2, 6 RY + 6 measurements, 0 SWAPs, 6 logical /
 6 physical qubits (a product state — no entangling gates are needed here, and
 none are claimed). Full detail: `stage3_simulation.csv` / `stage3_simulation.json`.
+
+**Error propagation across stages (measured):** a ±0.02 shift in every
+selected Stage 1 probability moves exact P(≥3) from 0.3603 to [0.3200, 0.4014];
+the most sensitive single customer moves it by only 0.0069. So the ~36%
+campaign estimate is robust to a single customer's miscalibration, but a
+systematic ±0.02 calibration error in Stage 1 moves it by about ±0.04.
 
 ## Error analysis and limitations
 

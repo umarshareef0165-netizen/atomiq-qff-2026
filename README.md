@@ -187,8 +187,9 @@ python3 -m venv .venv
   qiskit-machine-learning 0.9.1, qiskit-optimization 0.7.0,
   qiskit-algorithms 0.4.0, scikit-learn 1.9.1, pandas 3.1.1, numpy 2.5.4,
   scipy 1.18.1, openpyxl 3.1.5, matplotlib 3.11.2.
-- **Files:** `run_pipeline.py` (all three stages), `make_deck.py` (slides),
-  `resources/` (official dataset + problem statement), `stage1_predictions.csv`,
+- **Files:** `run_pipeline.py` (all three stages), `atomiq_pipeline.ipynb`
+  (end-to-end runnable notebook — runs the pipeline and verifies every result),
+  `make_deck.py` (slides), `resources/` (official dataset + problem statement), `stage1_predictions.csv`,
   `stage2_selection.csv` + `.json`, `stage3_simulation.csv` + `.json`,
   `results_summary.json`, `deck.pdf`, `video_script.md`, `SUBMISSION_CHECKLIST.md`.
   `_kernel_cache.npz` is a cached fidelity-kernel matrix (regenerable).
